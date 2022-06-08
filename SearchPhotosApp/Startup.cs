@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SearchPhotosApp.BLL;
 using SearchPhotosApp.Services;
 using System;
 using System.Collections.Generic;
@@ -25,7 +26,7 @@ namespace SearchPhotosApp
         {
             services.AddControllersWithViews();
             services.AddTransient<IImageService, ImageService>();
-            //services.AddTransient<IImageService, ImageService>();
+            services.AddTransient<IImageBusinessLayer, ImageBusinessLayer>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

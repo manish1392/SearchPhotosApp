@@ -8,6 +8,6 @@ namespace SearchPhotosApp.Services
 {
     public interface IImageService
     {
-        public Task<FeedModel> GetFeed(string word);
+        public Task<string> GetFeed(string word);
     }
 }

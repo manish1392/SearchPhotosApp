@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using SearchPhotosApp.BLL;
 using SearchPhotosApp.Models;
 using SearchPhotosApp.Services;
 using System;
@@ -13,24 +14,24 @@ namespace SearchPhotosApp.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly IImageService _imageService;
+        private readonly IImageBusinessLayer _imageBusinessLayer;
 
-        public HomeController(IImageService imageService,ILogger<HomeController> logger)
+        public HomeController(IImageBusinessLayer imageBusinessLayer, ILogger<HomeController> logger)
         {
             _logger = logger;
-            _imageService = imageService;
+            _imageBusinessLayer = imageBusinessLayer;
         }
 
         public async Task<IActionResult> Index()
         {
-            var publicImagesFeed = await _imageService.GetFeed(null);
+            var publicImagesFeed = await _imageBusinessLayer.GetFeed(null);
             return View(publicImagesFeed);
         }
 
         [HttpGet]
         public async Task<FeedModel> GetImagesByWord(string word)
         {
-            var imageFeed = await _imageService.GetFeed(word);
+            var imageFeed = await _imageBusinessLayer.GetFeed(word);
             return imageFeed;
 
         }
