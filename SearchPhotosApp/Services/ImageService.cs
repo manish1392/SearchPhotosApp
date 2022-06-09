@@ -11,11 +11,9 @@ namespace SearchPhotosApp.Services
 {
     public class ImageService : IImageService
     {
-        //private readonly HttpClient _client;
         private readonly IConfiguration _config;
         public ImageService(IConfiguration config)
         {
-            //_client = client ?? throw new ArgumentNullException(nameof(client));
             _config = config ?? throw new ArgumentNullException(nameof(config));
         }
         public async Task<string> GetFeed(string word)
@@ -33,7 +31,9 @@ namespace SearchPhotosApp.Services
             {
                 using (var response = await httpClient.GetAsync(uri))
                 {
-                    apiResponse = await response.Content.ReadAsStringAsync();     
+                    if(response.IsSuccessStatusCode && response!= null)
+                        apiResponse = await response.Content.ReadAsStringAsync();
+                        
                 }
             }
             return apiResponse;
