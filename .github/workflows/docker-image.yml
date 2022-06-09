@@ -16,7 +16,6 @@ env:
   REPO_NAME: searchphotosapp
 
 jobs:
-
   build-push-image-to-docker-hub:
 
     runs-on: ubuntu-latest
