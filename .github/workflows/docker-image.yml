@@ -13,10 +13,11 @@ env:
   REGISTRY: docker.io
   # github.repository as <account>/<repo>
   IMAGE_NAME: ${{ github.repository }}
+  REPO_NAME: 'searchphotosapp'
 
 jobs:
 
-  build:
+  build-push-image-to-docker-hub:
 
     runs-on: ubuntu-latest
 
@@ -29,5 +30,8 @@ jobs:
         password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
     - name: Build the Docker image
       run: docker build . --file SearchPhotosApp/Dockerfile
-        
+      
+    - name: Docker Push
+      run: docker push $DOCKER_HUB_USERNAME/$REPO_NAME:${{ steps.date.outputs.date }}
+
     
