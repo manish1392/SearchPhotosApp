@@ -23,6 +23,16 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    
+    - name: Install GitVersion
+      uses: gittools/actions/gitversion/setup@v0.9.7
+      with:
+          versionSpec: '5.8.3'
+
+    - name: Determine Version
+      id: version-git
+      uses: gittools/actions/gitversion/execute@v0.9.7
+    
     - name: Setup Docker buildx
       uses: docker/setup-buildx-action@79abd3f86f79a9d68a23c75a09a9a85889262adf
       
@@ -36,7 +46,7 @@ jobs:
       id: meta
       uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
       with:
-        images: ${{ secrets.DOCKER_HUB_USERNAME }}/REPO_NAME
+        images: ${{ secrets.DOCKER_HUB_USERNAME }}/${{ REPO_NAME }}
       
     - name: Build and push Docker image
       uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
@@ -44,7 +54,9 @@ jobs:
         context: .
         file: ./SearchPhotosApp/Dockerfile
         push: true
-        tags: ${{ steps.meta.outputs.tags }}
+        tags: |
+            latest
+            v${{ steps.version-git.outputs.semVer }}
         labels: ${{ steps.meta.outputs.labels }}
         
     
