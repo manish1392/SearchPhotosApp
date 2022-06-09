@@ -45,9 +45,7 @@ jobs:
         context: .
         file: ./SearchPhotosApp/Dockerfile
         push: true
-        tags: |
-            latest
-            1.0.1
+        tags: latest
         labels: ${{ steps.meta.outputs.labels }}
         
     
