@@ -13,7 +13,7 @@ env:
   REGISTRY: docker.io
   # github.repository as <account>/<repo>
   IMAGE_NAME: ${{ github.repository }}
-  REPO_NAME: 'searchphotosapp'
+  REPO_NAME: searchphotosapp
 
 jobs:
 
