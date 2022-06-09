@@ -20,10 +20,17 @@ namespace SearchPhotosApp.BLL
         }
         public async Task<FeedModel> GetFeed(string word)
         {
-            FeedModel feed = new FeedModel();
-            var response = await _imageService.GetFeed(word);
-            feed.Images = ProcessFeed(response);
-            return feed;
+            try
+            {
+                FeedModel feed = new FeedModel();
+                var response = await _imageService.GetFeed(word);
+                feed.Images = ProcessFeed(response);
+                return feed;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public List<ImageModel> ProcessFeed(string response)

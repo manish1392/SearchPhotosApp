@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31025.194
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SearchPhotosApp", "SearchPhotosApp\SearchPhotosApp.csproj", "{62D83F52-D29A-4C75-9A55-5B25AE0F9116}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SearchPhotosAppUnitTests", "SearchAppUnitTests\SearchPhotosAppUnitTests.csproj", "{78759630-8436-4780-8BB9-A7F966259685}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SearchPhotosAppUnitTests", "SearchAppUnitTests\SearchPhotosAppUnitTests.csproj", "{78759630-8436-4780-8BB9-A7F966259685}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

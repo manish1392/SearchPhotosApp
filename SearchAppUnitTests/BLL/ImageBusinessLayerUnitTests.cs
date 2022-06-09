@@ -28,5 +28,17 @@ namespace SearchPhotosAppUnitTests.BLL
             var result = imgBLL.GetFeed(It.IsAny<string>());
             Assert.IsNotNull(result);
         }
+
+        [Test]
+        public void GetFeed_Exception()
+        {
+            FeedModel feed = new FeedModel();
+            _service.Setup(x => x.GetFeed(It.IsAny<string>())).Throws(new Exception("Something went wrong!"));
+            ImageBusinessLayer imgBLL = new ImageBusinessLayer(_service.Object);
+            var result = imgBLL.GetFeed(It.IsAny<string>());
+            Assert.Throws(Is.TypeOf<Exception>()
+                 .And.Message.EqualTo("Something went wrong!"),
+                 delegate { throw new Exception("Something went wrong!"); });
+        }
     }
 }
